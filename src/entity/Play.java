@@ -9,7 +9,10 @@ public class Play {
     private int numberOfGoalClub2;
     Statuse statuse;
 
-    public Play(String firstClub,String secondClub, int numberOfGoalClub1, int numberOfGoalClub2) {
+    public Play() {
+    }
+
+    public Play(String firstClub, String secondClub, int numberOfGoalClub1, int numberOfGoalClub2) {
         this.firstClub = firstClub;
         this.secondClub = secondClub;
         this.numberOfGoalClub1 = numberOfGoalClub1;

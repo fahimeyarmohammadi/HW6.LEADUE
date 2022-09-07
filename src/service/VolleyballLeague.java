@@ -3,8 +3,9 @@ package service;
 import entity.Club;
 import entity.League;
 import entity.Play;
-import repository.FootballClubRepository;
-import repository.FootballPlayRepository;
+import entity.VolleyballClub;
+import repository.VolleyballClubRepository;
+import repository.VolleyballPlayRepository;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -13,18 +14,20 @@ import java.util.Scanner;
 
 import static java.lang.Integer.parseInt;
 
-public class FootballLeague implements League {
-    FootballPlayRepository footballPlayRepository=new FootballPlayRepository();
-    FootballClubRepository footballClubRepository=new FootballClubRepository();
+public class VolleyballLeague implements League {
+
+    VolleyballPlayRepository volleyballPlayRepository = new VolleyballPlayRepository();
+    VolleyballClubRepository volleyballClubRepository = new VolleyballClubRepository();
     Scanner scanner = new Scanner(System.in);
 
-    public FootballLeague() throws SQLException {
+    public VolleyballLeague() throws SQLException {
     }
 
-    public void creatTable() throws SQLException {
-        footballClubRepository.creatFootballClubTable();
-        footballPlayRepository.creatFootballPlayTable();
+    public void creatVolleyballTable() throws SQLException {
+        volleyballClubRepository.creatVolleyballClubTable();
+        volleyballPlayRepository.volleyballPlayTable();
     }
+
     @Override
     public void addClubToLeague() throws SQLException {
         System.out.println("enter your club information name");
@@ -42,15 +45,15 @@ public class FootballLeague implements League {
             Play play = new Play(name, secondClubName, numberOfGoal1, numberOfGoal2);
             playList.add(play);
         }
-        Club club = new Club(name, playList);
-        footballClubRepository.addClub(club);
+        VolleyballClub club = new VolleyballClub(name, playList);
+        volleyballClubRepository.addVolleyballClub(club);
     }
 
     @Override
     public void deleteClubFromLeague() throws SQLException {
         System.out.println("enter club name for delete");
         String name = scanner.nextLine();
-        footballClubRepository.deleteClub(name);
+        volleyballClubRepository.deleteVolleyballClub(name);
     }
 
     @Override
@@ -64,34 +67,33 @@ public class FootballLeague implements League {
         System.out.println("number of goal first club");
         int numberOfGoalClub2 = parseInt(scanner.nextLine());
         Play play = new Play(firstClub, secondClub, numberOfGoalClub1, numberOfGoalClub2);
-        footballPlayRepository.insertPlay(play);
-        List<Play>plays=footballPlayRepository.selectByName(firstClub);
-        if(plays.equals( null)){
-            Club club = new Club(firstClub,plays);
-            footballClubRepository.addClub(club);
-        }else{
-            Club club = new Club(firstClub,plays);
-            footballClubRepository.updateClub(club);
+        volleyballPlayRepository.insertPlay(play);
+        List<Play> plays = volleyballPlayRepository.selectByNameVolleyball(firstClub);
+        if (plays.equals(null)) {
+            VolleyballClub club = new VolleyballClub(firstClub, plays);
+            volleyballClubRepository.addVolleyballClub(club);
+        } else {
+            VolleyballClub club = new VolleyballClub(firstClub, plays);
+            volleyballClubRepository.updateVolleyballClub(club);
         }
+
     }
 
     @Override
     public void showClubInformation() throws SQLException {
         System.out.println("enter club name for show");
         String name = scanner.nextLine();
-        if(footballClubRepository.viewClubInformation(name)==null)
+        if (volleyballClubRepository.viewVolleyballClubInformation(name) == null)
             System.out.println("this club is not exist");
-       else System.out.println(footballClubRepository.viewClubInformation(name));
+        else System.out.println(volleyballClubRepository.viewVolleyballClubInformation(name));
     }
 
     @Override
     public void ShowClubSorted() throws SQLException {
-        List<Club>clubList=new ArrayList<>();
-         clubList=footballClubRepository.showFootballClubSorted();
-        for (int i = 0; i <clubList.size(); i++) {
+        List<VolleyballClub> clubList = new ArrayList<>();
+        clubList = volleyballClubRepository.showVolleyballClubSorted();
+        for (int i = 0; i < clubList.size(); i++) {
             System.out.println(clubList.get(i));
-
         }
     }
 }
-

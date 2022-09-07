@@ -20,14 +20,13 @@ public class FootballClubRepository extends MyConnection {
         PreparedStatement preparedStatement = connection.prepareStatement("create table footballclubtbl" +
                 "( name varchar(50) not null," + " numberOfPlay int not null," + " numberOfWin int not null," +
                 " numberOfLost int," + " numberOfEqual int, " + " drawGoal int," + " forGoal int, " +
-                " score int, " + " coach varchar(50) )");
+                " score int )");
         preparedStatement.executeUpdate();
-        connection.close();
     }
 
     public void addClub(Club club) throws SQLException {
         PreparedStatement preparedStatement = connection.prepareStatement("insert into footballclubtbl" +
-                " values (?,?,?,?,?,?,?,?,?)");
+                " values (?,?,?,?,?,?,?,?)");
         preparedStatement.setString(1, club.getName());
         preparedStatement.setInt(2, club.getNumberOfPlay());
         preparedStatement.setInt(3, club.getNumberOfWin());
@@ -36,10 +35,8 @@ public class FootballClubRepository extends MyConnection {
         preparedStatement.setInt(6, club.getDrawGoal());
         preparedStatement.setInt(7, club.getForGoal());
         preparedStatement.setInt(8, club.getScore());
-        preparedStatement.setString(9, club.getCoach());
 
         preparedStatement.executeUpdate();
-        connection.close();
     }
 
     public void deleteClub(String clubName) throws SQLException {
@@ -64,8 +61,7 @@ public class FootballClubRepository extends MyConnection {
                     resultSet.getInt(5),
                     resultSet.getInt(6),
                     resultSet.getInt(7),
-                    resultSet.getInt(8),
-                    resultSet.getString(9)
+                    resultSet.getInt(8)
             );
         }
         return resultClub;
@@ -86,12 +82,25 @@ public class FootballClubRepository extends MyConnection {
                     resultSet.getInt(5),
                     resultSet.getInt(6),
                     resultSet.getInt(7),
-                    resultSet.getInt(8),
-                    resultSet.getString(9)
+                    resultSet.getInt(8)
             );
             clubList.add(resultClub);
         }
         Collections.sort(clubList, new SortByScore());
         return clubList;
+    }
+    public void updateClub(Club club) throws SQLException {
+        PreparedStatement preparedStatement = connection.prepareStatement("update footballclubtbl " +
+                "set numberOfPlay=?,numberOfWin=?,numberOfLost=?," +
+                "numberOfEqual=?,drawGoal=?,forGoal=?,score=? where name=? ");
+
+        preparedStatement.setInt(1, club.getNumberOfPlay());
+        preparedStatement.setInt(2, club.getNumberOfWin());
+        preparedStatement.setInt(3, club.getNumberOfLost());
+        preparedStatement.setInt(4, club.getNumberOfEqual());
+        preparedStatement.setInt(5, club.getDrawGoal());
+        preparedStatement.setInt(6, club.getForGoal());
+        preparedStatement.setInt(7, club.getScore());
+        preparedStatement.setString(8, club.getName());
     }
 }

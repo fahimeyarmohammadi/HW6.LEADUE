@@ -15,15 +15,15 @@ public class Club {
     private int score;
     private List<Play> playList=new ArrayList<>();
 
-    private String coach;
 
-    public Club(String name, List<Play> playList, String coach) {
+
+    public Club(String name, List<Play> playList) {
         this.name = name;
         this.playList = playList;
-        this.coach = coach;
+
     }
 
-    public Club(String name, int numberOfPlay, int numberOfWin, int numberOfLost, int numberOfEqual, int drawGoal, int forGoal, int score, String coach) {
+    public Club(String name, int numberOfPlay, int numberOfWin, int numberOfLost, int numberOfEqual, int drawGoal, int forGoal, int score) {
         this.name = name;
         this.numberOfPlay = numberOfPlay;
         this.numberOfWin = numberOfWin;
@@ -32,7 +32,6 @@ public class Club {
         this.drawGoal = drawGoal;
         this.forGoal = forGoal;
         this.score = score;
-        this.coach = coach;
     }
 
     public int getScore() {
@@ -110,14 +109,6 @@ public class Club {
             this.forGoal = forGoal;
         }
 
-        public String getCoach () {
-            return coach;
-        }
-
-        public void setCoach (String coach){
-            this.coach = coach;
-        }
-
         public String getName () {
             return name;
         }
@@ -146,7 +137,6 @@ public class Club {
                 ", drawGoal=" + drawGoal +
                 ", forGoal=" + forGoal +
                 ", score=" + score +
-                ", coach='" + coach + '\'' +
                 '}';
     }
 
@@ -155,11 +145,11 @@ public class Club {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Club club = (Club) o;
-        return numberOfPlay == club.numberOfPlay && numberOfWin == club.numberOfWin && numberOfLost == club.numberOfLost && numberOfEqual == club.numberOfEqual && drawGoal == club.drawGoal && forGoal == club.forGoal && score == club.score && Objects.equals(name, club.name) && Objects.equals(playList, club.playList) && Objects.equals(coach, club.coach);
+        return numberOfPlay == club.numberOfPlay && numberOfWin == club.numberOfWin && numberOfLost == club.numberOfLost && numberOfEqual == club.numberOfEqual && drawGoal == club.drawGoal && forGoal == club.forGoal && score == club.score && Objects.equals(name, club.name) && Objects.equals(playList, club.playList);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, numberOfPlay, numberOfWin, numberOfLost, numberOfEqual, drawGoal, forGoal, score, playList, coach);
+        return Objects.hash(name, numberOfPlay, numberOfWin, numberOfLost, numberOfEqual, drawGoal, forGoal, score, playList);
     }
 }
