@@ -36,4 +36,16 @@ public class TakeFromUser {
             String name = scanner.nextLine();
             return name;
         }
+         public Play takePlayFromUser(){
+             System.out.println("enter play information first club name");
+             String firstClub = scanner.nextLine();
+             System.out.println("second club name");
+             String secondClub = scanner.nextLine();
+             System.out.println("number of goal first club");
+             int numberOfGoalClub1 = parseInt(scanner.nextLine());
+             System.out.println("number of goal first club");
+             int numberOfGoalClub2 = parseInt(scanner.nextLine());
+             Play play = new Play(firstClub, secondClub, numberOfGoalClub1, numberOfGoalClub2);
+             return play;
+         }
 }
