@@ -23,7 +23,7 @@ public class VolleyballClubRepository extends MyConnection {
     }
 
     public void addVolleyballClub(VolleyballClub club) throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement("insert into volleyballclubtbl" +
+        PreparedStatement preparedStatement = connection.prepareStatement("insert into  volleyballclubtbl" +
                 " values (?,?,?,?,?,?,?,)");
         preparedStatement.setString(1, club.getName());
         preparedStatement.setInt(2, club.getNumberOfPlay());
@@ -42,6 +42,7 @@ public class VolleyballClubRepository extends MyConnection {
         preparedStatement.setString(1, clubName);
         preparedStatement.executeUpdate();
     }
+
     public VolleyballClub viewVolleyballClubInformation(String clubName) throws SQLException {
         PreparedStatement preparedStatement = connection.prepareStatement("select * from volleyballclubtbl" +
                 " where name=?");
@@ -83,6 +84,7 @@ public class VolleyballClubRepository extends MyConnection {
         Collections.sort(clubList, new VolleyballSortByScore());
         return clubList;
     }
+
     public void updateVolleyballClub(VolleyballClub club) throws SQLException {
         PreparedStatement preparedStatement = connection.prepareStatement("update volleyballclubtbl " +
                 "set numberOfPlay=?,numberOfWin=?,numberOfLost=?," +
@@ -94,5 +96,13 @@ public class VolleyballClubRepository extends MyConnection {
         preparedStatement.setInt(5, club.getNumberOfSetLost());
         preparedStatement.setInt(6, club.getScore());
         preparedStatement.setString(7, club.getName());
+    }
+
+    public boolean isExist(String name) throws SQLException {
+        PreparedStatement preparedStatement = connection.prepareStatement("select from volleyballclubtbl" +
+                " where name = ?");
+        preparedStatement.setString(1, name);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        return(resultSet.next());
     }
 }
