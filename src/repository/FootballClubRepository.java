@@ -1,6 +1,7 @@
 package repository;
 
 import entity.Club;
+import entity.Play;
 import entity.SortByScore;
 
 import java.sql.Connection;
@@ -35,7 +36,6 @@ public class FootballClubRepository extends MyConnection {
         preparedStatement.setInt(6, club.getDrawGoal());
         preparedStatement.setInt(7, club.getForGoal());
         preparedStatement.setInt(8, club.getScore());
-
         preparedStatement.executeUpdate();
     }
 
@@ -89,6 +89,7 @@ public class FootballClubRepository extends MyConnection {
         Collections.sort(clubList, new SortByScore());
         return clubList;
     }
+
     public void updateClub(Club club) throws SQLException {
         PreparedStatement preparedStatement = connection.prepareStatement("update footballclubtbl " +
                 "set numberOfPlay=?,numberOfWin=?,numberOfLost=?," +
@@ -103,4 +104,13 @@ public class FootballClubRepository extends MyConnection {
         preparedStatement.setInt(7, club.getScore());
         preparedStatement.setString(8, club.getName());
     }
+
+    public boolean isExist(String name) throws SQLException {
+        PreparedStatement preparedStatement = connection.prepareStatement("select from footballclubtbl" +
+                " where name = ?");
+        preparedStatement.setString(1, name);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        return(resultSet.next());
+    }
+
 }
