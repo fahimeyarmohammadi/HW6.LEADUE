@@ -1,4 +1,4 @@
-package entity;
+package service;
 
 import java.sql.SQLException;
 

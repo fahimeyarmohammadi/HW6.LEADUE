@@ -19,7 +19,7 @@ public class Main {
                         "3 for add play,4 for show the club information,5 for show clubs table sorted by score ");
                 answer = scanner.nextLine();
                 FootballLeague footballLeague = new FootballLeague();
-                footballLeague.creatTable();
+//                footballLeague.creatTable();
                 switch (answer) {
                     case "1":
                         footballLeague.addClubToLeague();
@@ -40,10 +40,11 @@ public class Main {
                 break;
             case "2":
                 System.out.println("enter 1 for add club,2 for delete club," +
-                        "3 for add play,4 for show the club information,5 for show clubs table sorted by score ");
+                        "3 for add play,4 for show the club information," +
+                        "5 for show clubs table sorted by score ");
                 answer = scanner.nextLine();
                 VolleyballLeague volleyballLeague = new VolleyballLeague();
-                volleyballLeague.creatVolleyballTable();
+//                volleyballLeague.creatVolleyballTable();
                 switch (answer) {
                     case "1":
                         volleyballLeague.addClubToLeague();

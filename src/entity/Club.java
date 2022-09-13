@@ -13,8 +13,7 @@ public class Club {
     private int drawGoal;
     private int forGoal;
     private int score;
-    private List<Play> playList=new ArrayList<>();
-
+    private List<Play> playList = new ArrayList<>();
 
 
     public Club(String name, List<Play> playList) {
@@ -44,87 +43,87 @@ public class Club {
         return score;
     }
 
-        public void setScore ( int score){
-            this.score = score;
-        }
+    public void setScore(int score) {
+        this.score = score;
+    }
 
-        public int getNumberOfWin () {
+    public int getNumberOfWin() {
 
-            for (int j = 0; j < playList.size(); j++) {
-                if (playList.get(j).getStatuse().toString().equals("WIN")) {
-                    numberOfWin += 1;
-                }
+        for (int j = 0; j < playList.size(); j++) {
+            if (playList.get(j).getStatuse().toString().equals("WIN")) {
+                numberOfWin += 1;
             }
-            return numberOfWin;
         }
+        return numberOfWin;
+    }
 
-        public void setNumberOfWin () {
+    public void setNumberOfWin() {
 
-            this.numberOfWin = numberOfWin;
-        }
+        this.numberOfWin = numberOfWin;
+    }
 
-        public int getNumberOfLost () {
-            for (int j = 0; j < playList.size(); j++) {
-                if (playList.get(j).getStatuse().toString().equals("LOST")) {
-                    numberOfLost += 1;
-                }
+    public int getNumberOfLost() {
+        for (int j = 0; j < playList.size(); j++) {
+            if (playList.get(j).getStatuse().toString().equals("LOST")) {
+                numberOfLost += 1;
             }
-            return numberOfLost;
         }
+        return numberOfLost;
+    }
 
-        public void setNumberOfLost ( int numberOfLost){
-            this.numberOfLost = numberOfLost;
-        }
+    public void setNumberOfLost(int numberOfLost) {
+        this.numberOfLost = numberOfLost;
+    }
 
-        public int getNumberOfEqual () {
-            for (int j = 0; j < playList.size(); j++) {
-                if (playList.get(j).getStatuse().toString().equals("EQUAL")) {
-                    numberOfEqual += 1;
-                }
+    public int getNumberOfEqual() {
+        for (int j = 0; j < playList.size(); j++) {
+            if (playList.get(j).getStatuse().toString().equals("EQUAL")) {
+                numberOfEqual += 1;
             }
-            return numberOfEqual;
         }
+        return numberOfEqual;
+    }
 
-        public void setNumberOfEqual ( int numberOfEqual){
-            this.numberOfEqual = numberOfEqual;
-        }
+    public void setNumberOfEqual(int numberOfEqual) {
+        this.numberOfEqual = numberOfEqual;
+    }
 
-        public int getDrawGoal () {
-            for (int i = 0; i < playList.size(); i++)
-                drawGoal += playList.get(i).getNumberOfGoalClub1();
-            return drawGoal;
-        }
+    public int getDrawGoal() {
+        for (int i = 0; i < playList.size(); i++)
+            drawGoal += playList.get(i).getNumberOfGoalClub1();
+        return drawGoal;
+    }
 
-        public void setDrawGoal ( int drawGoal){
-            this.drawGoal = drawGoal;
-        }
+    public void setDrawGoal(int drawGoal) {
+        this.drawGoal = drawGoal;
+    }
 
-        public int getForGoal () {
-            for (int i = 0; i < playList.size(); i++)
-                forGoal += playList.get(i).getNumberOfGoalClub2();
-            return forGoal;
-        }
+    public int getForGoal() {
+        for (int i = 0; i < playList.size(); i++)
+            forGoal += playList.get(i).getNumberOfGoalClub2();
+        return forGoal;
+    }
 
-        public void setForGoal ( int forGoal){
-            this.forGoal = forGoal;
-        }
+    public void setForGoal(int forGoal) {
+        this.forGoal = forGoal;
+    }
 
-        public String getName () {
-            return name;
-        }
+    public String getName() {
+        return name;
+    }
 
-        public void setName (String name){
-            this.name = name;
-        }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-        public int getNumberOfPlay () {
-            numberOfPlay = playList.size();
-            return numberOfPlay;
-        }
+    public int getNumberOfPlay() {
+        numberOfPlay = playList.size();
+        return numberOfPlay;
+    }
 
-        public void setNumberOfPlay ( int numberOfPlay){
-            this.numberOfPlay = numberOfPlay;
-        }
+    public void setNumberOfPlay(int numberOfPlay) {
+        this.numberOfPlay = numberOfPlay;
+    }
 
     @Override
     public String toString() {

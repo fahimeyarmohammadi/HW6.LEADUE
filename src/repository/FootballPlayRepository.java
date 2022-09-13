@@ -35,7 +35,7 @@ public class FootballPlayRepository extends MyConnection {
 
     public List<Play> selectByName(String name) throws SQLException {
         PreparedStatement preparedStatement = connection.prepareStatement("select from footballplaytbl" +
-                " where firstClub=?");
+                " where firstclub = ?");
         preparedStatement.setString(1,name);
         ResultSet resultSet = preparedStatement.executeQuery();
         List<Play> list = new ArrayList<>();
