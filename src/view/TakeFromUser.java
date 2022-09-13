@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 import static java.lang.Integer.parseInt;
 
-public class Menu {
+public class TakeFromUser {
 
         Scanner scanner = new Scanner(System.in);
         public Club takeClubFromUser () {
@@ -30,5 +30,10 @@ public class Menu {
             }
             Club club = new Club(name, playList);
             return club;
+        }
+        public String clubNameForDelete(){
+            System.out.println("enter club name for delete");
+            String name = scanner.nextLine();
+            return name;
         }
 }
