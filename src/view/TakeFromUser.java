@@ -48,4 +48,9 @@ public class TakeFromUser {
              Play play = new Play(firstClub, secondClub, numberOfGoalClub1, numberOfGoalClub2);
              return play;
          }
+         public String takeNameForViewInformation(){
+             System.out.println("enter club name for show");
+             String name = scanner.nextLine();
+             return name;
+         }
 }
