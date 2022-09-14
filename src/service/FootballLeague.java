@@ -7,14 +7,11 @@ import repository.FootballClubRepository;
 import repository.FootballPlayRepository;
 import view.TakeFromUser;
 
-import java.awt.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
-
-import static java.lang.Integer.parseInt;
 
 public class FootballLeague implements League {
     FootballPlayRepository footballPlayRepository = new FootballPlayRepository();
@@ -45,7 +42,6 @@ public class FootballLeague implements League {
         else
             takeFromUser.notExist();
     }
-
 
     @Override
     public void addPlayToLeague() throws SQLException {
@@ -81,7 +77,7 @@ public class FootballLeague implements League {
     public String showClubInformation() throws SQLException {
         String name = takeFromUser.takeNameForViewInformation();
         if (footballClubRepository.isExist(name))
-            return(footballClubRepository.viewClubInformation(name).toString());
+            return (footballClubRepository.viewClubInformation(name).toString());
         else
             return ("not exist");
     }
@@ -94,4 +90,3 @@ public class FootballLeague implements League {
         return (clubList.toString());
     }
 }
-

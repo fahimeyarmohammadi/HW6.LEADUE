@@ -2,13 +2,11 @@ package repository;
 
 
 import entity.VolleyballClub;
-import entity.VolleyballSortByScore;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class VolleyballClubRepository extends MyConnection {
@@ -98,6 +96,7 @@ public class VolleyballClubRepository extends MyConnection {
         preparedStatement.setInt(5, club.getNumberOfSetLost());
         preparedStatement.setInt(6, club.getScore());
         preparedStatement.setString(7, club.getName());
+
         preparedStatement.executeUpdate();
     }
 
@@ -106,6 +105,6 @@ public class VolleyballClubRepository extends MyConnection {
                 " where name = ?");
         preparedStatement.setString(1, name);
         ResultSet resultSet = preparedStatement.executeQuery();
-        return(resultSet.next());
+        return (resultSet.next());
     }
 }

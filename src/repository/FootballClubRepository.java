@@ -72,7 +72,6 @@ public class FootballClubRepository extends MyConnection {
         ResultSet resultSet = preparedStatement.executeQuery();
         List<Club> clubList = new ArrayList<>();
         Club resultClub;
-
         while (resultSet.next()) {
             resultClub = new Club(
                     resultSet.getString(1),

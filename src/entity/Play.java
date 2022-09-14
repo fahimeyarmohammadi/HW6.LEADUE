@@ -18,15 +18,13 @@ public class Play {
     }
 
     public Play(String firstClub, String secondClub, int numberOfGoalClub1,
-                int numberOfGoalClub2 , String stat ) {
+                int numberOfGoalClub2, String stat) {
         this.firstClub = firstClub;
         this.secondClub = secondClub;
         this.numberOfGoalClub1 = numberOfGoalClub1;
         this.numberOfGoalClub2 = numberOfGoalClub2;
-        this.statuse=Statuse.valueOf(stat);
+        this.statuse = Statuse.valueOf(stat);
     }
-
-
 
     public String getFirstClub() {
         return firstClub;
@@ -61,12 +59,12 @@ public class Play {
     }
 
     public Statuse getStatuse() {
-        if(numberOfGoalClub1>numberOfGoalClub2)
-            statuse=Statuse.WIN;
-        if(numberOfGoalClub1<numberOfGoalClub2)
-            statuse=Statuse.LOST;
-        if(numberOfGoalClub1==numberOfGoalClub2)
-            statuse=Statuse.EQUAL;
+        if (numberOfGoalClub1 > numberOfGoalClub2)
+            statuse = Statuse.WIN;
+        if (numberOfGoalClub1 < numberOfGoalClub2)
+            statuse = Statuse.LOST;
+        if (numberOfGoalClub1 == numberOfGoalClub2)
+            statuse = Statuse.EQUAL;
         return statuse;
     }
 
@@ -76,13 +74,12 @@ public class Play {
 
     @Override
     public String toString() {
-        return "Play{" +
+        return "Play" +
                 "firstClub='" + firstClub + '\'' +
                 ", secondClub='" + secondClub + '\'' +
                 ", numberOfGoalClub1=" + numberOfGoalClub1 +
                 ", numberOfGoalClub2=" + numberOfGoalClub2 +
-                ", statuse=" + statuse +
-                '}';
+                ", statuse=" + statuse ;
     }
 
     @Override
@@ -90,12 +87,16 @@ public class Play {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Play play = (Play) o;
-        return numberOfGoalClub1 == play.numberOfGoalClub1 && numberOfGoalClub2 == play.numberOfGoalClub2 && Objects.equals(firstClub, play.firstClub) && Objects.equals(secondClub, play.secondClub);
+        return numberOfGoalClub1 == play.numberOfGoalClub1 &&
+                numberOfGoalClub2 == play.numberOfGoalClub2 &&
+                Objects.equals(firstClub, play.firstClub) &&
+                Objects.equals(secondClub, play.secondClub);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(firstClub, secondClub, numberOfGoalClub1, numberOfGoalClub2);
+        return Objects.hash(firstClub, secondClub,
+                numberOfGoalClub1, numberOfGoalClub2);
     }
 }
 

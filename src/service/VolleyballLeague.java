@@ -1,6 +1,8 @@
 package service;
 
-import entity.*;
+import entity.Play;
+import entity.VolleyballClub;
+import entity.VolleyballSortByScore;
 import repository.VolleyballClubRepository;
 import repository.VolleyballPlayRepository;
 import view.TakeFromUser;
@@ -9,9 +11,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Scanner;
-
-import static java.lang.Integer.parseInt;
 
 public class VolleyballLeague implements League {
 
@@ -48,7 +47,7 @@ public class VolleyballLeague implements League {
         Play play;
         play = takeFromUser.takePlayFromUser();
         volleyballPlayRepository.insertPlay(play);
-        Play playe=new Play(play.getSecondClub(),play.getFirstClub(),
+        Play playe = new Play(play.getSecondClub(), play.getFirstClub(),
                 play.getNumberOfGoalClub2(), play.getNumberOfGoalClub1());
         volleyballPlayRepository.insertPlay(playe);
         List<Play> plays = new ArrayList<>();
@@ -61,26 +60,25 @@ public class VolleyballLeague implements League {
             VolleyballClub club1 = new VolleyballClub(play.getFirstClub(), plays);
             volleyballClubRepository.addVolleyballClub(club1);
         }
-        List<Play> playList=new ArrayList<>();
-        if(volleyballClubRepository.isExist(playe.getFirstClub())){
-            playList=volleyballPlayRepository.selectByNameVolleyball(playe.getFirstClub());
-            VolleyballClub club=new VolleyballClub(playe.getFirstClub(), playList);
+        List<Play> playList = new ArrayList<>();
+        if (volleyballClubRepository.isExist(playe.getFirstClub())) {
+            playList = volleyballPlayRepository.selectByNameVolleyball(playe.getFirstClub());
+            VolleyballClub club = new VolleyballClub(playe.getFirstClub(), playList);
             volleyballClubRepository.updateVolleyballClub(club);
-        }else{
+        } else {
             playList.add(playe);
-            VolleyballClub club=new VolleyballClub(playe.getFirstClub(), playList);
+            VolleyballClub club = new VolleyballClub(playe.getFirstClub(), playList);
             volleyballClubRepository.addVolleyballClub(club);
         }
-
     }
 
     @Override
     public String showClubInformation() throws SQLException {
         String name = takeFromUser.takeNameForViewInformation();
         if (volleyballClubRepository.isExist(name))
-            return(volleyballClubRepository.viewVolleyballClubInformation(name).toString());
+            return (volleyballClubRepository.viewVolleyballClubInformation(name).toString());
         else
-            return("no exist");
+            return ("no exist");
     }
 
     @Override

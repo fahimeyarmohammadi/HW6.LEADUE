@@ -28,6 +28,7 @@ public class VolleyballPlayRepository extends MyConnection {
         preparedStatement.setInt(3, play.getNumberOfGoalClub1());
         preparedStatement.setInt(4, play.getNumberOfGoalClub2());
         preparedStatement.setString(5, play.getStatuse().toString());
+
         preparedStatement.executeUpdate();
     }
 

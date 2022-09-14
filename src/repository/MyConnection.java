@@ -12,6 +12,6 @@ public class MyConnection {
     public static Connection getConnection() throws SQLException {
         return DriverManager.getConnection("jdbc:postgresql://localhost:5432/maktab", "postgres", "Fy4965285");
     }
-    protected  Connection connection =getConnection();
 
+    protected Connection connection = getConnection();
 }

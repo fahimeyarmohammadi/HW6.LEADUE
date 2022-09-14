@@ -2,7 +2,6 @@ package repository;
 
 import entity.Play;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,7 +18,6 @@ public class FootballPlayRepository extends MyConnection {
                 "( firstClub varchar(50) not null, " + " secondClub varchar(50) not null," + " numberOfGoalClub1 int not null," +
                 " numberOfGoalClub2 int not null, status varchar(10) not null )");
         preparedStatement.executeUpdate();
-
     }
 
     public void insertPlay(Play play) throws SQLException {

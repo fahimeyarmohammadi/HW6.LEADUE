@@ -10,7 +10,6 @@ public class VolleyballClub {
     private int numberOfWin;
     private int numberOfLost;
     private int numberOfSetWin;
-
     private int numberOfSetLost;
     private int score;
     private List<Play> playList = new ArrayList<>();
@@ -21,15 +20,14 @@ public class VolleyballClub {
     }
 
     public VolleyballClub(String name, int numberOfPlay, int numberOfWin, int numberOfLost
-            , int score,int numberOfSetWin,int numberOfSetLost) {
+            , int score, int numberOfSetWin, int numberOfSetLost) {
         this.name = name;
         this.numberOfPlay = numberOfPlay;
         this.numberOfWin = numberOfWin;
         this.numberOfLost = numberOfLost;
-        this.numberOfSetWin=numberOfSetWin;
-        this.numberOfSetLost=numberOfSetLost;
+        this.numberOfSetWin = numberOfSetWin;
+        this.numberOfSetLost = numberOfSetLost;
         this.score = score;
-
     }
 
     public String getName() {
@@ -40,18 +38,15 @@ public class VolleyballClub {
         this.name = name;
     }
 
-
     public int getScore() {
-
         for (int i = 0; i < playList.size(); i++) {
-            if (playList.get(i).getNumberOfGoalClub1()-playList.get(i).getNumberOfGoalClub2()>1)
+            if (playList.get(i).getNumberOfGoalClub1() - playList.get(i).getNumberOfGoalClub2() > 1)
                 score += 3;
-            else if ((playList.get(i).getNumberOfGoalClub1()-playList.get(i).getNumberOfGoalClub2()==1))
-                    score+=2;
-            else if((playList.get(i).getNumberOfGoalClub1()-playList.get(i).getNumberOfGoalClub2()== -1))
-                score+=1;
+            else if ((playList.get(i).getNumberOfGoalClub1() - playList.get(i).getNumberOfGoalClub2() == 1))
+                score += 2;
+            else if ((playList.get(i).getNumberOfGoalClub1() - playList.get(i).getNumberOfGoalClub2() == -1))
+                score += 1;
         }
-
         return score;
     }
 
@@ -106,7 +101,7 @@ public class VolleyballClub {
 
     public int getNumberOfSetLost() {
         for (int i = 0; i < playList.size(); i++)
-            numberOfSetLost=playList.get(i).getNumberOfGoalClub2();
+            numberOfSetLost = playList.get(i).getNumberOfGoalClub2();
         return numberOfSetLost;
     }
 
@@ -116,15 +111,14 @@ public class VolleyballClub {
 
     @Override
     public String toString() {
-        return "VolleyballClub{" +
-                "name='" + name + '\'' +
+        return "VolleyballClub" +
+                  name + '\'' +
                 ", numberOfPlay=" + numberOfPlay +
                 ", numberOfWin=" + numberOfWin +
                 ", numberOfLost=" + numberOfLost +
                 ", numberOfSetWin=" + numberOfSetWin +
                 ", numberOfSetLost=" + numberOfSetLost +
-                ", score=" + score +
-                '}';
+                ", score=" + score;
     }
 
     @Override
