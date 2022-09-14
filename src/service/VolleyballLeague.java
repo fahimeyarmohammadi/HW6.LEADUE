@@ -18,8 +18,7 @@ public class VolleyballLeague implements League {
 
     VolleyballPlayRepository volleyballPlayRepository = new VolleyballPlayRepository();
     VolleyballClubRepository volleyballClubRepository = new VolleyballClubRepository();
-    TakeFromUser takeFromUser=new TakeFromUser();
-    Scanner scanner = new Scanner(System.in);
+    TakeFromUser takeFromUser = new TakeFromUser();
 
     public VolleyballLeague() throws SQLException {
     }
@@ -32,20 +31,23 @@ public class VolleyballLeague implements League {
     @Override
     public void addClubToLeague() throws SQLException {
         VolleyballClub club;
-        club=takeFromUser.takeVolleyballClub();
+        club = takeFromUser.takeVolleyballClub();
         volleyballClubRepository.addVolleyballClub(club);
     }
 
     @Override
     public void deleteClubFromLeague() throws SQLException {
-        String name=takeFromUser.clubNameForDelete();
-        volleyballClubRepository.deleteVolleyballClub(name);
+        String name = takeFromUser.clubNameForDelete();
+        if (volleyballClubRepository.isExist(name))
+            volleyballClubRepository.deleteVolleyballClub(name);
+        else
+            takeFromUser.notExist();
     }
 
     @Override
     public void addPlayToLeague() throws SQLException {
         Play play;
-        play=takeFromUser.takePlayFromUser();
+        play = takeFromUser.takePlayFromUser();
         volleyballPlayRepository.insertPlay(play);
         List<Play> plays = new ArrayList<>();
         if (volleyballClubRepository.isExist(play.getFirstClub())) {
@@ -63,10 +65,11 @@ public class VolleyballLeague implements League {
 
     @Override
     public void showClubInformation() throws SQLException {
-        String name=takeFromUser.takeNameForViewInformation();
-        if (volleyballClubRepository.viewVolleyballClubInformation(name).getName().equals(null))
-            System.out.println("this club is not exist");
-        else System.out.println(volleyballClubRepository.viewVolleyballClubInformation(name));
+        String name = takeFromUser.takeNameForViewInformation();
+        if (volleyballClubRepository.isExist(name))
+            volleyballClubRepository.viewVolleyballClubInformation(name);
+        else
+            takeFromUser.notExist();
     }
 
     @Override

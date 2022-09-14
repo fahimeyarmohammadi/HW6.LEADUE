@@ -9,8 +9,6 @@ public class Play {
     private int numberOfGoalClub2;
     Statuse statuse;
 
-    public Play() {
-    }
 
     public Play(String firstClub, String secondClub, int numberOfGoalClub1, int numberOfGoalClub2) {
         this.firstClub = firstClub;
@@ -18,6 +16,16 @@ public class Play {
         this.numberOfGoalClub1 = numberOfGoalClub1;
         this.numberOfGoalClub2 = numberOfGoalClub2;
     }
+
+    public Play(String firstClub, String secondClub, int numberOfGoalClub1, int numberOfGoalClub2 , String stat ) {
+        this.firstClub = firstClub;
+        this.secondClub = secondClub;
+        this.numberOfGoalClub1 = numberOfGoalClub1;
+        this.numberOfGoalClub2 = numberOfGoalClub2;
+        this.statuse=Statuse.valueOf(stat);
+    }
+
+
 
     public String getFirstClub() {
         return firstClub;
@@ -53,11 +61,11 @@ public class Play {
 
     public Statuse getStatuse() {
         if(numberOfGoalClub1>numberOfGoalClub2)
-            statuse=Statuse.valueOf("WIN");
+            statuse=Statuse.WIN;
         if(numberOfGoalClub1<numberOfGoalClub2)
-            statuse=Statuse.valueOf("LOST");
+            statuse=Statuse.LOST;
         if(numberOfGoalClub1==numberOfGoalClub2)
-            statuse=Statuse.valueOf("EQUAL");
+            statuse=Statuse.EQUAL;
         return statuse;
     }
 

@@ -19,7 +19,7 @@ public class Main {
                         "3 for add play,4 for show the club information,5 for show clubs table sorted by score ");
                 answer = scanner.nextLine();
                 FootballLeague footballLeague = new FootballLeague();
-//                footballLeague.creatTable();
+//               footballLeague.creatTable();
                 switch (answer) {
                     case "1":
                         footballLeague.addClubToLeague();

@@ -31,13 +31,14 @@ public class VolleyballPlayRepository extends MyConnection {
     }
 
     public List<Play> selectByNameVolleyball(String name) throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement("select from volleyballplaytbl" +
+        PreparedStatement preparedStatement = connection.prepareStatement("select * from volleyballplaytbl" +
                 " where firstClub=?");
         preparedStatement.setString(1, name);
         ResultSet resultSet = preparedStatement.executeQuery();
         List<Play> list = new ArrayList<>();
+        Play play;
         while (resultSet.next()) {
-            Play play = new Play(
+            play = new Play(
                     resultSet.getString(1),
                     resultSet.getString(2),
                     resultSet.getInt(3),

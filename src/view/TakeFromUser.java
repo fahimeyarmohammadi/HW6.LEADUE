@@ -44,7 +44,7 @@ public class TakeFromUser {
              String secondClub = scanner.nextLine();
              System.out.println("number of goal first club");
              int numberOfGoalClub1 = parseInt(scanner.nextLine());
-             System.out.println("number of goal first club");
+             System.out.println("number of goal second club");
              int numberOfGoalClub2 = parseInt(scanner.nextLine());
              Play play = new Play(firstClub, secondClub, numberOfGoalClub1, numberOfGoalClub2);
              return play;
@@ -61,9 +61,9 @@ public class TakeFromUser {
              int numberOfPlay = parseInt(scanner.nextLine());
              List<Play> playList = new ArrayList<>();
              for (int i = 0; i < numberOfPlay; i++) {
-                 System.out.println("enter " + i + "playes information second club name");
+                 System.out.println("enter " + (i+1) + " playes information second club name");
                  String secondClubName = scanner.nextLine();
-                 System.out.println("numberOfGoalTeam1");
+                 System.out.println("number of goal Team1");
                  int numberOfGoal1 = parseInt(scanner.nextLine());
                  System.out.println("number of goal team 2");
                  int numberOfGoal2 = parseInt(scanner.nextLine());

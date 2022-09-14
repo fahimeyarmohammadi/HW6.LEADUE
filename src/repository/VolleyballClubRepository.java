@@ -24,7 +24,7 @@ public class VolleyballClubRepository extends MyConnection {
 
     public void addVolleyballClub(VolleyballClub club) throws SQLException {
         PreparedStatement preparedStatement = connection.prepareStatement("insert into  volleyballclubtbl" +
-                " values (?,?,?,?,?,?,?,)");
+                " values (?,?,?,?,?,?,?)");
         preparedStatement.setString(1, club.getName());
         preparedStatement.setInt(2, club.getNumberOfPlay());
         preparedStatement.setInt(3, club.getNumberOfWin());

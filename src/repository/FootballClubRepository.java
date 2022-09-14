@@ -92,8 +92,8 @@ public class FootballClubRepository extends MyConnection {
 
     public void updateClub(Club club) throws SQLException {
         PreparedStatement preparedStatement = connection.prepareStatement("update footballclubtbl " +
-                "set numberOfPlay=?,numberOfWin=?,numberOfLost=?," +
-                "numberOfEqual=?,drawGoal=?,forGoal=?,score=? where name=? ");
+                "set numberOfPlay=?, numberOfWin=?, numberOfLost=?," +
+                " numberOfEqual=?, drawGoal=?, forGoal=?, score=? where name=? ; ");
 
         preparedStatement.setInt(1, club.getNumberOfPlay());
         preparedStatement.setInt(2, club.getNumberOfWin());
@@ -103,6 +103,8 @@ public class FootballClubRepository extends MyConnection {
         preparedStatement.setInt(6, club.getForGoal());
         preparedStatement.setInt(7, club.getScore());
         preparedStatement.setString(8, club.getName());
+
+        preparedStatement.executeUpdate();
     }
 
     public boolean isExist(String name) throws SQLException {
@@ -110,7 +112,7 @@ public class FootballClubRepository extends MyConnection {
                 " where name = ?");
         preparedStatement.setString(1, name);
         ResultSet resultSet = preparedStatement.executeQuery();
-        return(resultSet.next());
+        return (resultSet.next());
     }
 
 }

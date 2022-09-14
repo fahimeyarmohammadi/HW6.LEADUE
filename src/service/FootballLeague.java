@@ -40,33 +40,49 @@ public class FootballLeague implements League {
         String name = takeFromUser.clubNameForDelete();
         if (footballClubRepository.isExist(name))
             footballClubRepository.deleteClub(name);
-        takeFromUser.notExist();
+        else
+            takeFromUser.notExist();
     }
+
 
     @Override
     public void addPlayToLeague() throws SQLException {
         Play play;
         play = takeFromUser.takePlayFromUser();
+        Play playe=new Play(play.getSecondClub(), play.getFirstClub()
+                ,play.getNumberOfGoalClub2(), play.getNumberOfGoalClub1());
         footballPlayRepository.insertPlay(play);
+        footballPlayRepository.insertPlay(playe);
         List<Play> plays = new ArrayList<>();
         if (footballClubRepository.isExist(play.getFirstClub())) {
-            plays = footballPlayRepository.selectByName(play.getFirstClub());
-            plays.add(play);
+            plays=footballPlayRepository.selectByName(play.getFirstClub());
             Club club = new Club(play.getFirstClub(), plays);
+            System.out.println(club);
             footballClubRepository.updateClub(club);
         } else {
             plays.add(play);
-            Club club1 = new Club(play.getFirstClub(), plays);
-            footballClubRepository.addClub(club1);
+            Club club = new Club(play.getFirstClub(), plays);
+            footballClubRepository.addClub(club);
+        }
+        List<Play> playList=new ArrayList<>();
+        if(footballClubRepository.isExist(playe.getFirstClub())){
+            playList=footballPlayRepository.selectByName(playe.getFirstClub());
+            Club club=new Club(playe.getFirstClub(), playList);
+            footballClubRepository.updateClub(club);
+        }else{
+            playList.add(playe);
+            Club club=new Club(playe.getFirstClub(), playList);
+            footballClubRepository.addClub(club);
         }
     }
 
     @Override
     public void showClubInformation() throws SQLException {
         String name = takeFromUser.takeNameForViewInformation();
-        if (footballClubRepository.viewClubInformation(name).getName().equals(null))
-            System.out.println("this club is not exist");
-        else System.out.println(footballClubRepository.viewClubInformation(name));
+        if (footballClubRepository.isExist(name))
+            System.out.println(footballClubRepository.viewClubInformation(name));
+        else
+            takeFromUser.notExist();
     }
 
     @Override
