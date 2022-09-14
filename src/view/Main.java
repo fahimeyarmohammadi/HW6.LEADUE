@@ -31,10 +31,10 @@ public class Main {
                         footballLeague.addPlayToLeague();
                         break;
                     case "4":
-                        footballLeague.showClubInformation();
+                        System.out.println(footballLeague.showClubInformation());
                         break;
                     case "5":
-                        footballLeague.ShowClubSorted();
+                        System.out.println(footballLeague.ShowClubSorted());
                         break;
                 }
                 break;
@@ -56,10 +56,10 @@ public class Main {
                         volleyballLeague.addPlayToLeague();
                         break;
                     case "4":
-                        volleyballLeague.showClubInformation();
+                        System.out.println(volleyballLeague.showClubInformation());
                         break;
                     case "5":
-                        volleyballLeague.ShowClubSorted();
+                        System.out.println(volleyballLeague.ShowClubSorted());
                         break;
                 }
         }

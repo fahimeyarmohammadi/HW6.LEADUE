@@ -10,7 +10,7 @@ public interface League {
 
     void addPlayToLeague() throws SQLException;
 
-    void showClubInformation() throws SQLException;
+    String showClubInformation() throws SQLException;
 
-    void ShowClubSorted() throws SQLException;
+    String ShowClubSorted() throws SQLException;
 }

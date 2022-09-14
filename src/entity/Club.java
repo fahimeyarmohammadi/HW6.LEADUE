@@ -22,7 +22,8 @@ public class Club {
 
     }
 
-    public Club(String name, int numberOfPlay, int numberOfWin, int numberOfLost, int numberOfEqual, int drawGoal, int forGoal, int score) {
+    public Club(String name, int numberOfPlay, int numberOfWin, int numberOfLost
+            , int numberOfEqual, int drawGoal, int forGoal, int score) {
         this.name = name;
         this.numberOfPlay = numberOfPlay;
         this.numberOfWin = numberOfWin;

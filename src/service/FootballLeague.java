@@ -2,6 +2,7 @@ package service;
 
 import entity.Club;
 import entity.Play;
+import entity.SortByScore;
 import repository.FootballClubRepository;
 import repository.FootballPlayRepository;
 import view.TakeFromUser;
@@ -9,6 +10,7 @@ import view.TakeFromUser;
 import java.awt.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -49,49 +51,47 @@ public class FootballLeague implements League {
     public void addPlayToLeague() throws SQLException {
         Play play;
         play = takeFromUser.takePlayFromUser();
-        Play playe=new Play(play.getSecondClub(), play.getFirstClub()
-                ,play.getNumberOfGoalClub2(), play.getNumberOfGoalClub1());
+        Play playe = new Play(play.getSecondClub(), play.getFirstClub()
+                , play.getNumberOfGoalClub2(), play.getNumberOfGoalClub1());
         footballPlayRepository.insertPlay(play);
         footballPlayRepository.insertPlay(playe);
         List<Play> plays = new ArrayList<>();
         if (footballClubRepository.isExist(play.getFirstClub())) {
-            plays=footballPlayRepository.selectByName(play.getFirstClub());
+            plays = footballPlayRepository.selectByName(play.getFirstClub());
             Club club = new Club(play.getFirstClub(), plays);
-            System.out.println(club);
             footballClubRepository.updateClub(club);
         } else {
             plays.add(play);
             Club club = new Club(play.getFirstClub(), plays);
             footballClubRepository.addClub(club);
         }
-        List<Play> playList=new ArrayList<>();
-        if(footballClubRepository.isExist(playe.getFirstClub())){
-            playList=footballPlayRepository.selectByName(playe.getFirstClub());
-            Club club=new Club(playe.getFirstClub(), playList);
+        List<Play> playList = new ArrayList<>();
+        if (footballClubRepository.isExist(playe.getFirstClub())) {
+            playList = footballPlayRepository.selectByName(playe.getFirstClub());
+            Club club = new Club(playe.getFirstClub(), playList);
             footballClubRepository.updateClub(club);
-        }else{
+        } else {
             playList.add(playe);
-            Club club=new Club(playe.getFirstClub(), playList);
+            Club club = new Club(playe.getFirstClub(), playList);
             footballClubRepository.addClub(club);
         }
     }
 
     @Override
-    public void showClubInformation() throws SQLException {
+    public String showClubInformation() throws SQLException {
         String name = takeFromUser.takeNameForViewInformation();
         if (footballClubRepository.isExist(name))
-            System.out.println(footballClubRepository.viewClubInformation(name));
+            return(footballClubRepository.viewClubInformation(name).toString());
         else
-            takeFromUser.notExist();
+            return ("not exist");
     }
 
     @Override
-    public void ShowClubSorted() throws SQLException {
+    public String ShowClubSorted() throws SQLException {
         List<Club> clubList = new ArrayList<>();
         clubList = footballClubRepository.showFootballClubSorted();
-        for (int i = 0; i < clubList.size(); i++) {
-            System.out.println(clubList.get(i));
-        }
+        Collections.sort(clubList, new SortByScore());
+        return (clubList.toString());
     }
 }
 

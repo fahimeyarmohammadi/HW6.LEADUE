@@ -17,7 +17,8 @@ public class Play {
         this.numberOfGoalClub2 = numberOfGoalClub2;
     }
 
-    public Play(String firstClub, String secondClub, int numberOfGoalClub1, int numberOfGoalClub2 , String stat ) {
+    public Play(String firstClub, String secondClub, int numberOfGoalClub1,
+                int numberOfGoalClub2 , String stat ) {
         this.firstClub = firstClub;
         this.secondClub = secondClub;
         this.numberOfGoalClub1 = numberOfGoalClub1;

@@ -2,6 +2,7 @@ package entity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class VolleyballClub {
     private String name;
@@ -19,7 +20,8 @@ public class VolleyballClub {
         this.playList = playList;
     }
 
-    public VolleyballClub(String name, int numberOfPlay, int numberOfWin, int numberOfLost, int score,int numberOfSetWin,int numberOfSetLost) {
+    public VolleyballClub(String name, int numberOfPlay, int numberOfWin, int numberOfLost
+            , int score,int numberOfSetWin,int numberOfSetLost) {
         this.name = name;
         this.numberOfPlay = numberOfPlay;
         this.numberOfWin = numberOfWin;
@@ -110,5 +112,34 @@ public class VolleyballClub {
 
     public void setNumberOfSetLost(int numberOfSetLost) {
         this.numberOfSetLost = numberOfSetLost;
+    }
+
+    @Override
+    public String toString() {
+        return "VolleyballClub{" +
+                "name='" + name + '\'' +
+                ", numberOfPlay=" + numberOfPlay +
+                ", numberOfWin=" + numberOfWin +
+                ", numberOfLost=" + numberOfLost +
+                ", numberOfSetWin=" + numberOfSetWin +
+                ", numberOfSetLost=" + numberOfSetLost +
+                ", score=" + score +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        VolleyballClub that = (VolleyballClub) o;
+        return numberOfPlay == that.numberOfPlay && numberOfWin == that.numberOfWin
+                && numberOfLost == that.numberOfLost && numberOfSetWin == that.numberOfSetWin
+                && numberOfSetLost == that.numberOfSetLost && score == that.score && name.equals(that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, numberOfPlay, numberOfWin, numberOfLost,
+                numberOfSetWin, numberOfSetLost, score);
     }
 }

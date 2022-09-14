@@ -86,13 +86,12 @@ public class FootballClubRepository extends MyConnection {
             );
             clubList.add(resultClub);
         }
-        Collections.sort(clubList, new SortByScore());
         return clubList;
     }
 
     public void updateClub(Club club) throws SQLException {
         PreparedStatement preparedStatement = connection.prepareStatement("update footballclubtbl " +
-                "set numberOfPlay=?, numberOfWin=?, numberOfLost=?," +
+                "set numberOfPlay=?, numberOfWin=?, numberOfLost=? ," +
                 " numberOfEqual=?, drawGoal=?, forGoal=?, score=? where name=? ; ");
 
         preparedStatement.setInt(1, club.getNumberOfPlay());

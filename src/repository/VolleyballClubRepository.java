@@ -81,21 +81,24 @@ public class VolleyballClubRepository extends MyConnection {
             );
             clubList.add(resultClub);
         }
-        Collections.sort(clubList, new VolleyballSortByScore());
         return clubList;
     }
 
     public void updateVolleyballClub(VolleyballClub club) throws SQLException {
         PreparedStatement preparedStatement = connection.prepareStatement("update volleyballclubtbl " +
                 "set numberOfPlay=?,numberOfWin=?,numberOfLost=?," +
-                ", numberOfSetWin=?,numberOfSetLost=?,score=? where name=? ");
+                " numberOfSetWin=?,numberOfSetLost=?,score=? where name=?; ");
         preparedStatement.setInt(1, club.getNumberOfPlay());
+        System.out.println(club.getNumberOfPlay());
         preparedStatement.setInt(2, club.getNumberOfWin());
+        System.out.println(club.getNumberOfWin());
         preparedStatement.setInt(3, club.getNumberOfLost());
+        System.out.println(club.getNumberOfLost());
         preparedStatement.setInt(4, club.getNumberOfSetWin());
         preparedStatement.setInt(5, club.getNumberOfSetLost());
         preparedStatement.setInt(6, club.getScore());
         preparedStatement.setString(7, club.getName());
+        preparedStatement.executeUpdate();
     }
 
     public boolean isExist(String name) throws SQLException {
